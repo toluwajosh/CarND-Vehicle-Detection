@@ -16,7 +16,7 @@ The following are the goals and steps of this project:
 [//]: # (Image References)
 [vehicle_non_vehicle]: ./output_images/vehicle_non_vehicle.jpg
 [hog_8]: ./output_images/vehicle_hog_features_8.jpg
-[hog_12]: ./output_images/vehicle_hog_features.jpg
+[hog_12]: ./output_images/vehicle_hog_features_12.jpg
 [hog_non_vehicle]: ./output_images/non_vehicle_hog_features.jpg
 [sliding_window]: ./output_images/sliding_window_result.jpg
 [feature_subsampling]: ./output_images/feature_subsample_result.jpg
@@ -180,8 +180,8 @@ Find in the link below, the final output of the pipeline for the project video
 
 With this project, I am able to better appreciate every detail that goes into technologies that make our lives easier. More can still be done on this project. We can estimate distance of detected vehicles, and/or improve vehicle tracking to identify cars even in occluded situations. This will however, need better image classification algorithms. 
 
-For this solution, real time application is very important. Therefore, it will be very useful to do all these in real-time or at least, very close to real-time.
+For this kind of project, real time application is very important. Therefore, it will be very useful to do all these in real-time or at least, very close to real-time.
 
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+<!-- Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.   -->
 
