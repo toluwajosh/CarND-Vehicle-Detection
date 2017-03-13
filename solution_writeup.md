@@ -82,7 +82,7 @@ After deciding on using the YCrCb colour space, I also added Spatial binning fea
 | YCrCb 		| (64, 64) 		| -					| 16992  			 | 99.04%   |
 | YCrCb 		| (128, 128) 	| -					| 53856  			 | - 		|
 | YCrCb 		| (32, 32) 		| 32				| 7872  			 | 98.99%   |
-| **YCrCb** 	| (32, 32) 		| 64				| **7668** 			 | 99.16%   |
+| **YCrCb** 	| (32, 32) 		| 64				| **7968** 			 | 99.16%   |
 | YCrCb 		| (64, 64) 		| 32				| 17088  			 | 99.10%   |
 | YCrCb 		| (64, 64) 		| 64				| 17184  			 | 99.18%   |
 
