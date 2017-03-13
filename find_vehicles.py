@@ -5,6 +5,8 @@ import time
 import itertools
 import numpy as np
 
+import matplotlib.pyplot as plt
+
 from sklearn.svm import LinearSVC
 from sklearn.preprocessing import StandardScaler
 
@@ -104,7 +106,7 @@ class Vehicle(object):
         self.ystart = 400
         self.ystop = 656
         self.scales = [1.0, 1.5]
-        self.sliding_win_sizes = [96] # ,128
+        self.sliding_win_sizes = [96, 128] # ,128
         self.overlap = 0.8
         self.spatial_size = (32, 32)
         self.hist_bins = 64
@@ -116,6 +118,8 @@ class Vehicle(object):
         self.hog_feat = True
         self.spatial_feat = True
         self.hist_feat = True
+
+        self.iter = 0
 
         # to keep track of heat within consecutive frames
         self.recent_heats = []
@@ -322,7 +326,6 @@ class Vehicle(object):
         # using sliding window ################
         # bboxes = self.sliding_window(frame)
         # #####################################
-
         # using HOG subsampling: much faster implementation of sliding window
         bboxes = self.hog_subsample(frame)
         # #####################################
@@ -340,6 +343,10 @@ class Vehicle(object):
         # Visualize the heatmap when displaying
         heatmap = np.clip(heat, 0, 255)
 
+        self.iter += 1
+        # plt.imsave('iters/heat_'+str(self.iter)+'.jpg', heatmap, cmap='hot')
+
+
         # Find final boxes from heatmap using label function
         labels = label(heatmap)
         draw_img = self.draw_labeled_bboxes(np.copy(frame), labels)
@@ -350,7 +357,7 @@ class Vehicle(object):
 # %% View solution in real time
 vehicle_frames = Vehicle() # initialize
 
-name_prefix = 'test'
+name_prefix = 'project'
 vid_path = name_prefix+'_video.mp4'
 
 # %% OpenCV:
@@ -360,11 +367,12 @@ cap = cv2.VideoCapture(vid_path)
 print(cap.isOpened())
 
 frame_no = 0
+iter = 0
 while(cap.isOpened()):
     ret, frame = cap.read()
     if ret==True:
-        # cv2.imwrite(vid_name+'/'+str(frame_no)+'.jpg', frame)
-
+        # iter += 1
+        # cv2.imwrite('iter2/frame_'+str(iter)+'.jpg', frame)
         draw_img = vehicle_frames.vehicle_find(frame=frame)
 
         cv2.imshow('frame',draw_img)
@@ -376,7 +384,7 @@ cv2.destroyAllWindows()
 
 # %% Export finished video
 from moviepy.editor import VideoFileClip
-vid_output = name_prefix+'_solve_3.mp4'
+vid_output = name_prefix+'_solve.mp4'
 clip_source = VideoFileClip(vid_path)
 vid_clip = clip_source.fl_image(vehicle_frames.vehicle_find) #NOTE: this function expects color images!!
 vid_clip.write_videofile(vid_output, audio=False)
